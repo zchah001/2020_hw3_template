@@ -75,7 +75,7 @@ pheatmap(sampleDistMatrix,
 pcaData <- plotPCA(vsd, intgroup=c("carbon","pH"), returnData=TRUE)
 percentVar <- round(100 * attr(pcaData, "percentVar"))
 
-ggplot(pcaData, aes(PC1, PC2, shape="pH",color=condition)) +
+ggplot(pcaData, aes(PC1, PC2, shape="pH",color="carbon")) +
     geom_point(size=3) +
     xlab(paste0("PC1: ",percentVar[1],"% variance")) +
     ylab(paste0("PC2: ",percentVar[2],"% variance")) +
