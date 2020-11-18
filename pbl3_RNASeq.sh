@@ -21,7 +21,7 @@ mkdir -p results
 tail -n +2 M_tuberculosis/sra_info.tab | while read RUN CARBON SAMPLE REP
 do
 	OUTNAME=results/${CARBON}_pH${SAMPLE}_r$REP
-	FASTQFILE=$RUN.fastq.gz
+	FASTQFILE=M_tuberculosis/$RUN.fastq.gz
 	echo "RUN is $RUN $OUTNAME INFILE=$FASTQFILE"
 	#RUN KALLISTO ON THE FILE
 #	kallisto quant -i $INDEX --single -l 300 -s 30 [ADD SOMETHING HERE]
