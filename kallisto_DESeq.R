@@ -9,7 +9,7 @@ library(RColorBrewer)
 
 samples <- read.table("M_tuberculosis/sra_info.tab",header=TRUE,sep="\t")
 #samples$Name = sprintf("%s.%s.r%s",samples$Genotype,samples$Treatment,samples$Replicate)
-samples$Name = sprintf("%s_%s_r%s",samples$carbonSrc,samples$pH, samples$Replicate)
+samples$Name = sprintf("%s_pH%s_r%s",samples$carbonSrc,samples$pH, samples$Replicate)
 samples$Name
 files <- file.path("results",samples$Name,"abundance.h5")
 txi.kallisto <- tximport(files, type = "kallisto", txOut = TRUE)
