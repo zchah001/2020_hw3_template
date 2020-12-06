@@ -1,3 +1,4 @@
+
 #!/usr/bin/bash
 #SBATCH -p short -N 1 -n 8 --out snp.log
 
@@ -29,4 +30,4 @@ tabix -p vcf $VCF
 bcftools stats -F $GENOME -s - $VCF > $VCF.stats
 mkdir -p plots
 plot-vcfstats -p plots/ $VCF.stats
-done
+done 
