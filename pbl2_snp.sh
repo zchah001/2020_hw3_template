@@ -3,19 +3,30 @@
 
 module load samtools
 module load bwa
+module load bcftools
 CPU=8
 
+FOLDER=/bigdata/gen220/shared/data/SARS-CoV-2/
+GENOME=NC_045512.fa
+if [ ! -L $GENOME ]; then
+        # make a symlink
+        ln -s $FOLDER/$GENOME .
+fi
 
-# align the reads from the libraries to the genome
-# see bwa mem examples
-# libraries are the *.fastq.gz files in your folder now
+if [ ! -f $GENOME.pac ]; then
+        bwa index $GENOME
 
-for libname in $(cat acc.txt)
+GENOME=NC_045512.fa
+bwa index $GENOME
+
+for acc in $(cat acc.txt)
 do
-	# YOU NEED TO FIX THIS
-	# run the bcftools steps for SNP calling 
+  m="$a.bam $m"
+
+VCF=SARS-CoV-2.vcf.gz
+bcftools mpileup -Ou -f $GENOME $m | bcftools call --ploidy 1 -vmO z -o $VCF
+tabix -p vcf $VCF
+bcftools stats -F $GENOME -s - $VCF > $VCF.stats
+mkdir -p plots
+plot-vcfstats -p plots/ $VCF.stats
 done
-# after producing the sam file
-
-# caount how many SNPs or INDELs in each file
-
