@@ -26,4 +26,3 @@ echo "RUN is $RUN $OUTNAME INFILE=$FASTQFILE"
 #RUN KALLISTO ON THE FILE
 kallisto quant -i $INDEX --single -l 300 -s 30 $FASTQFILE -o $OUTNAME
 done
-
