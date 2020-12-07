@@ -19,7 +19,7 @@ ACC="SRR11587604_1 SRR11587604_2 SRR11140748_1 SRR11140748_2"
 for acc in $ACC;
 do
   	echo "$acc"
-        if [ ! -s ${acc}_1.fastq.gz ]; then
+        if [ ! -s ${acc}.fastq.gz ]; then
                 ln -s $FOLDER/${acc}_[ZC].fastq.gz .
         fi
 done
@@ -71,7 +71,7 @@ ACCFILE=acc.txt
 sed -n ${N}p $ACCFILE | while read acc;
 do
   	if [ ! -f ${acc}.arrayjobs.fixmate.bam ]; then
-                bwa mem -t $CPU $GENOME ${acc}[Z].fastq.gz  > ${acc}.arrayjobs.sam
+                bwa mem -t $CPU $GENOME ${acc_[ZC].fastq.gz  > ${acc}.arrayjobs.sam
                 samtools fixmate --threads $CPU -O bam ${acc}.arrayjobs.sam ${acc}.arrayjobs.fixmate.bam
         fi
 	if [ ! -f ${acc}.arrayjobs.bam ]; then
