@@ -1,12 +1,14 @@
 #!/usr/bin/bash
-#SBATCH -p short -N 1 -n 8 --out snp.log
+#SBATCH -p short -N 1 -n 8 --out bwa_samtools.log
 
 module load samtools
 module load bwa
-module load bcftools
 CPU=8
+ln -s /bigdata/gen220/shared/data/SARS-CoV-2
+ln -s SARS-CoV-2/NC_045512.fa .
+ln -s SARS-CoV-2/*.fastq.gz .
+ln -s SARS-CoV-2/acc.txt
 
-FOLDER=/bigdata/gen220/shared/data/SARS-CoV-2/
 GENOME=NC_045512.fa
 bwa index $GENOME
 
