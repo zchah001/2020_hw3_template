@@ -2,7 +2,6 @@
 #SBATCH -p short -N 1 -n 8 --out RNASeq.log
 
 
-# load program to quantifying transcripts from RNA-Seq data
 module load kallisto
 
 ln -s /bigdata/gen220/shared/data/M_tuberculosis
